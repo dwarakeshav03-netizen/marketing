@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "./style.css";
+import LandingPage from "./components/LandingPage";
 
 const API = "http://localhost:8001";
 
@@ -28,6 +29,7 @@ function App() {
   const [token, setToken] = useState(
     localStorage.getItem("access_token") || ""
   );
+  const [showLanding, setShowLanding] = useState(true);
 
   const [tenant, setTenant] = useState(
     localStorage.getItem("tenant") || ""
@@ -536,6 +538,13 @@ function App() {
   // ============================================================
   // AUTH SCREEN
   // ============================================================
+  if (showLanding) {
+  return (
+    <LandingPage
+      onLogin={() => setShowLanding(false)}
+    />
+  );
+}
 
   if (!token) {
     return (
@@ -902,15 +911,19 @@ function App() {
 
         <div className="sidebar-header">
           <div className="brand-wrapper">
+<div className="brand-wrapper">
 
-            <div className="brand-icon">
-              ⚡
-            </div>
+  <img
+    src="/azentmart-ai-logo.jpg"
+    alt="Azentmart AI"
+    style={{
+      width: "150px",
+      height: "50px",
+      objectFit: "contain"
+    }}
+  />
 
-            <div className="brand-info">
-              <h1>Azentmart AI</h1>
-              <span>Enterprise AI Suite</span>
-            </div>
+</div>
 
           </div>
         </div>
